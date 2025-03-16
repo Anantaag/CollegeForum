@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Services Portal</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+        .modal-content {
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.3s ease-in-out;
+        }
+        .modal.active .modal-content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Header -->
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto px-4 py-6">
+            <h1 class="text-3xl font-bold text-gray-800 text-center font-['Inter']">Campus Services Portal</h1>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Category Buttons -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            <!-- Sell Button -->
+            <button onclick="openModal('sellModal')" class="bg-blue-500 hover:bg-blue-600 text-white rounded-lg p-6 shadow-lg transition duration-300 flex items-center justify-center space-x-3">
+                <i class="fas fa-tag text-2xl"></i>
+                <span class="text-xl font-semibold">Sell Items</span>
+            </button>
+
+            <!-- Carpool Button -->
+            <button onclick="openModal('carpoolModal')" class="bg-green-500 hover:bg-green-600 text-white rounded-lg p-6 shadow-lg transition duration-300 flex items-center justify-center space-x-3">
+                <i class="fas fa-car text-2xl"></i>
+                <span class="text-xl font-semibold">Carpool</span>
+            </button>
+
+            <!-- Events Button -->
+            <button onclick="openModal('eventsModal')" class="bg-purple-500 hover:bg-purple-600 text-white rounded-lg p-6 shadow-lg transition duration-300 flex items-center justify-center space-x-3">
+                <i class="fas fa-calendar-alt text-2xl"></i>
+                <span class="text-xl font-semibold">Events</span>
+            </button>
+
+            <!-- Updates Button -->
+            <button onclick="openModal('updatesModal')" class="bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg p-6 shadow-lg transition duration-300 flex items-center justify-center space-x-3">
+                <i class="fas fa-bell text-2xl"></i>
+                <span class="text-xl font-semibold">Updates</span>
+            </button>
+
+            <!-- Hostel Button -->
+            <button onclick="openModal('hostelModal')" class="bg-red-500 hover:bg-red-600 text-white rounded-lg p-6 shadow-lg transition duration-300 flex items-center justify-center space-x-3">
+                <i class="fas fa-home text-2xl"></i>
+                <span class="text-xl font-semibold">Hostel</span>
+            </button>
+        </div>
+
+        <!-- Modals -->
+        <!-- Sell Modal -->
+        <div id="sellModal" class="modal">
+            <div class="modal-content bg-white w-11/12 md:w-3/4 lg:w-1/2 mx-auto mt-20 rounded-xl shadow-2xl p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">Sell Items</h2>
+                    <button onclick="closeModal('sellModal')" class="text-gray-600 hover:text-gray-800">
+                        <i class="fas fa-times text-2xl"></i>
+                    </button>
+                </div>
+                <form class="space-y-4">
+                    <div>
+                        <label class="block text-gray-700 mb-2">Item Name</label>
+                        <input type="text" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter item name">
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 mb-2">Price</label>
+                        <input type="number" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter price">
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 mb-2">Description</label>
+                        <textarea class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" rows="3" placeholder="Describe your item"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 mb-2">Upload Images</label>
+                        <input type="file" multiple class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <button type="submit" class="w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600 transition duration-300">List Item</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Carpool Modal -->
+        <div id="carpoolModal" class="modal">
+            <div class="modal-content bg-white w-11/12 md:w-3/4 lg:w-1/2 mx-auto mt-20 rounded-xl shadow-2xl p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">Carpool</h2>
+                    <button onclick="closeModal('carpoolModal')" class="text-gray-600 hover:text-gray-800">
+                        <i class="fas fa-times text-2xl"></i>
+                    </button>
+                </div>
+                <form class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-gray-700 mb-2">From</label>
+                            <input type="text" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Starting point">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">To</label>
+                            <input type="text" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Destination">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-gray-700 mb-2">Date</label>
+                            <input type="date" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">Time</label>
+                            <input type="time" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-gray-700 mb-2">Available Seats</label>
+                            <input type="number" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Number of seats">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">Price per Seat</label>
+                            <input type="number" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Price">
+                        </div>
+                    </div>
+                    <button type="submit" class="w-full bg-green-500 text-white py-3 rounded-lg hover:bg-green-600 transition duration-300">Create Carpool</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Events Modal -->
+        <div id="eventsModal" class="modal">
+            <div class="modal-content bg-white w-11/12 md:w-3/4 lg:w-1/2 mx-auto mt-20 rounded-xl shadow-2xl p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">Events</h2>
+                    <button onclick="closeModal('eventsModal')" class="text-gray-600 hover:text-gray-800">
+                        <i class="fas fa-times text-2xl"></i>
+                    </button>
+                </div>
+                <form class="space-y-4">
+                    <div>
+                        <label class="block text-gray-700 mb-2">Event Name</label>
+                        <input type="text" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="Enter event name">
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-gray-700 mb-2">Date</label>
+                            <input type="date" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">Time</label>
+                            <input type="time" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 mb-2">Venue</label>
+                        <input type="text" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="Enter venue">
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 mb-2">Description</label>
+                        <textarea class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" rows="3" placeholder="Event description"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 mb-2">Registration Link</label>
+                        <input type="url" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="Enter registration link">
+                    </div>
+                    <button type="submit" class="w-full bg-purple-500 text-white py-3 rounded-lg hover:bg-purple-600 transition duration-300">Create Event</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Updates Modal -->
+        <div id="updatesModal" class="modal">
+            <div class="modal-content bg-white w-11/12 md:w-3/4 lg:w-1/2 mx-auto mt-20 rounded-xl shadow-2xl p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">Updates</h2>
+                    <button onclick="closeModal('updatesModal')" class="text-gray-600 hover:text-gray-800">
+                        <i class="fas fa-times text-2xl"></i>
+                    </button>
+                </div>
+                <div class="space-y-4">
+                    <!-- Sample Updates -->
+                    <div class="bg-yellow-50 p-4 rounded-lg">
+                        <div class="flex justify-between items-start">
+                            <h3 class="text-lg font-semibold text-yellow-800">Campus Maintenance Notice</h3>
+                            <span class="text-sm text-yellow-600">2 hours ago</span>
+                        </div>
+                        <p class="mt-2 text-yellow-700">Library will be closed for maintenance from 2 PM to 5 PM today.</p>
+                    </div>
+
+                    <div class="bg-yellow-50 p-4 rounded-lg">
+                        <div class="flex justify-between items-start">
+                            <h3 class="text-lg font-semibold text-yellow-800">Academic Calendar Update</h3>
+                            <span class="text-sm text-yellow-600">1 day ago</span>
+                        </div>
+                        <p class="mt-2 text-yellow-700">Mid-term examination dates have been announced. Check your student portal for details.</p>
+                    </div>
+
+                    <div class="bg-yellow-50 p-4 rounded-lg">
+                        <div class="flex justify-between items-start">
+                            <h3 class="text-lg font-semibold text-yellow-800">Sports Event</h3>
+                            <span class="text-sm text-yellow-600">2 days ago</span>
+                        </div>
+                        <p class="mt-2 text-yellow-700">Annual sports meet registration is now open. Visit the sports complex for registration.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hostel Modal -->
+        <div id="hostelModal" class="modal">
+            <div class="modal-content bg-white w-11/12 md:w-3/4 lg:w-1/2 mx-auto mt-20 rounded-xl shadow-2xl p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">Hostel Information</h2>
+                    <button onclick="closeModal('hostelModal')" class="text-gray-600 hover:text-gray-800">
+                        <i class="fas fa-times text-2xl"></i>
+                    </button>
+                </div>
+                <div class="space-y-6">
+                    <!-- Room Types -->
+                    <div class="bg-white rounded-lg border p-4">
+                        <h3 class="text-xl font-semibold mb-4">Available Room Types</h3>
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h4 class="font-medium">Single Room</h4>
+                                    <p class="text-sm text-gray-600">Private room with attached bathroom</p>
+                                </div>
+                                <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Available</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h4 class="font-medium">Double Sharing</h4>
+                                    <p class="text-sm text-gray-600">Shared room with common bathroom</p>
+                                </div>
+                                <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">Full</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h4 class="font-medium">Triple Sharing</h4>
+                                    <p class="text-sm text-gray-600">Shared room with attached bathroom</p>
+                                </div>
+                                <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Available</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Facilities -->
+                    <div class="bg-white rounded-lg border p-4">
+                        <h3 class="text-xl font-semibold mb-4">Facilities</h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-wifi text-gray-600"></i>
+                                <span>Free Wi-Fi</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-utensils text-gray-600"></i>
+                                <span>Dining Hall</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-dumbbell text-gray-600"></i>
+                                <span>Gym</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-couch text-gray-600"></i>
+                                <span>Common Room</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Information -->
+                    <div class="bg-white rounded-lg border p-4">
+                        <h3 class="text-xl font-semibold mb-4">Contact Information</h3>
+                        <div class="space-y-2">
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-phone text-gray-600"></i>
+                                <span>+1 234 567 890</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-envelope text-gray-600"></i>
+                                <span>hostel@campus.edu</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-map-marker-alt text-gray-600"></i>
+                                <span>123 Campus Street, Building A</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.style.display = 'block';
+            setTimeout(() => {
+                modal.classList.add('active');
+            }, 10);
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.remove('active');
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                closeModal(event.target.id);
+            }
+        }
+    </script>
+</body>
+</html>
